@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CVPerson.Models.Experience>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <style src="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></style>
+    <style src="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"></style>
+</head>
+
+<script>
+    $(document).ready(function () {
+        $('#finaltbl').DataTable();
+    });
+
+    $('#finaltbl').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ]
+    });
+</script>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" id="finaltbl">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Field)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SkillLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Person)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Field)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SkillLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.FirstName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ExperienceID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ExperienceID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ExperienceID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $('#finaltbl').DataTable();
+    });
+
+    $('#finaltbl').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ]
+    });
+</script>

@@ -1,0 +1,146 @@
+﻿
+@model CVPerson.Models.Common
+
+@{
+    ViewData["Title"] = "Final";
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <style src="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></style>
+    <style src="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"></style>
+</head>
+
+
+
+
+<h2>Person</h2>
+<p>
+    <a asp-action="Create" asp-controller="Persons">Create New</a>
+</p>
+
+<table class="table table-bordered" id="finaltbl1">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Address</th>
+            <th>Work Status</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Person)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.Age</td>
+                <td>@item.Gender</td>
+                <td>@item.DOB</td>
+                <td>@item.Address</td>
+                <td>@item.WorkStatus</td>
+                <td>@item.Contact</td>
+                <td>@item.Email</td>
+                <td>
+                    <a asp-controller="Persons" asp-action="Edit" asp-route-id="@item.PersonID">Edit</a> |
+                    <a asp-controller="Persons" asp-action="Details" asp-route-id="@item.PersonID">Details</a> |
+                    <a asp-controller="Persons" asp-action="Delete" asp-route-id="@item.PersonID">Delete</a>
+                </td>
+            </tr>
+            
+        }
+
+    </tbody>
+    
+</table>
+
+
+<br />
+<h2>Education</h2>
+<table class="table table-bordered" id="finaltbl2">
+    <thead>
+        <tr>
+            <th>College</th>
+            <th>Course</th>
+            <th>Completion Year</th>
+            <th>Project</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item2 in Model.Education)
+        {
+            <tr>
+                <td>@item2.College</td>
+                <td>@item2.Course</td>
+                <td>@item2.CompletionYear</td>
+                <td>@item2.Project</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<br />
+<h2>Experience</h2>
+<table class="table table-bordered" id="finaltbl">
+
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Year</th>
+            <th>Skill</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item3 in Model.Experience)
+        {
+            <tr>
+                <td>@item3.Field</td>
+                <td>@item3.Year</td>
+                <td>@item3.SkillLevel</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $('#finaltbl, #finaltbl1, #finaltbl2').DataTable();
+    });
+
+    $('#finaltbl').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'print'
+        ]
+    });
+</script>
+<hr />
+<div class="container">
+    <div class="row">
+        <a class="btn btn-outline-dark col-3" asp-area="" asp-controller="Main" asp-action="Index">
+            New Enrty
+        </a>
+        <a class="btn btn-outline-dark col-3" asp-area="" asp-controller="Persons" asp-action="Index">
+            Person List
+        </a>
+        <a class="btn btn-outline-dark col-3" asp-area="" asp-controller="Educations" asp-action="Index">
+            Education List
+        </a>
+        <a class="btn btn-outline-dark col-3" asp-area="" asp-controller="Experiences" asp-action="Index">
+            Experience List
+        </a>
+    </div>
+
+</div>
+

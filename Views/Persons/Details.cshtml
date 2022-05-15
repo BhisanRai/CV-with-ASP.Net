@@ -1,0 +1,103 @@
+﻿@model CVPerson.Models.Person
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WorkStatus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contact)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+       
+        <dd class="col-sm-10">
+            
+                @foreach (var item1 in Model.Experience)
+                {
+                    
+                    @item1.Field
+                }
+           
+           
+
+        </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Education)
+            </dt>
+            
+            <dd class="col-sm-10">
+                @if (Model !=null &&  Model.Education !=null )
+                {
+
+                    @foreach (var item in Model.Education)
+                    {
+                            @item.Course
+                    }
+                }
+
+
+            </dd>
+        </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PersonID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

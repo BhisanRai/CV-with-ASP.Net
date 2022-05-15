@@ -1,0 +1,92 @@
+﻿@model IEnumerable<CVPerson.Models.Person>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <style src="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"></style>
+    <style src="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"></style>
+</head>
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <!--<th>
+        @Html.DisplayNameFor(model => model.LastName)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Age)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Gender)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.DOB)
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.Address)
+    </th>-->
+            <th>
+                @Html.DisplayNameFor(model => model.WorkStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <!--<th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>-->
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <!--<td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Age)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Gender)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DOB)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>-->
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <!--<td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>-->
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PersonID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PersonID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PersonID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

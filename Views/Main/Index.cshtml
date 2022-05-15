@@ -1,0 +1,161 @@
+﻿@model CVPerson.Models.Person
+
+@{
+    ViewData["Title"] = "MainIndex";
+}
+<head>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+<h1>Main Page to Enter Data</h1>
+<h4>Enter the data for person, experience, education.</h4>
+<hr />
+<div class="container">
+    @using (Html.BeginForm("Index", "Main", FormMethod.Post))
+    {
+        <div class="row">
+            <h5>Person</h5>
+            <div class="col-4">
+                <label class="form-label">First Name</label>
+                <input class="form-control" type="Text" name="FirstName" placeholder="First Name" />
+                <label class="form-label">Last Name</label>
+                <input class="form-control" type="Text" name="LastName" placeholder="Last Name" />
+                <label class="form-label">Age</label>
+                <input class="form-control" type="number" name="Age" placeholder="Age" />
+
+            </div>
+            <div class="col-4">
+                <label class="form-label">Gender</label>
+                <input class="form-control" type="text" name="Gender" placeholder="Gender" />
+                <label class="form-label">Date Of Birth</label>
+                <input class="form-control" type="date" name="DOB" />
+                <label class="form-label">Address</label>
+                <input class="form-control" type="Text" name="Address" placeholder="Address" />
+            </div>
+            <div class="col-4">  
+                <label class="form-label">Work Status</label> <br />
+                <strong>Working</strong>
+                <input class="form-check" type="checkbox" name="WorkStatus" />
+                <label class="form-label">Contact</label>
+                <input class="form-control" type="number" name="Contact" placeholder="Contact Number" />
+                <label class="form-label">Email</label>
+                <input class="form-control" type="email" name="Email" placeholder="email@gmail.com" />
+            </div>
+
+            <hr />
+            <h5>Education</h5>
+            <div class="row" id="Education_Row">
+                <div class="col-4">
+                    <label class="form-label">College</label>
+                    <label class="form-label">Course</label>
+                </div>
+                <div class="col-4">
+                    <label class="form-label">Completion Year</label>
+                    <label class="form-label">Project Handles</label> <br />
+                </div>
+                <div class="col-3">
+                    <input type="button" value="Add" class="btn btn-outline-success" id="AddbtnEdu" />
+                </div>
+            </div>
+            
+            <hr />
+            <h5>Experience</h5>
+            <div class="row" id="Experience_Row">
+                <div class="col-3">
+                    <label class="form-label">Field</label>
+                    <label class="form-label">Year</label>
+                    <label class="form-label" typeof="text" name="SkillLevel">Skill Level</label>
+                </div>
+                <div class="col-3">
+                    <input type="button" value="Add" class="btn btn-outline-success" id="AddbtnExp" />
+                </div>
+            </div>
+            
+        </div>
+            <hr />
+        <button class="btn btn-outline-success col-md-12" type="submit">Add</button>
+    }
+</div>
+
+<template id="tempEdu">
+    <div class="row Education_cnt">
+        <input class="IndexEdu_cnt" type="hidden" name="Education.Index" value="{Ed1}" />
+        <div class="col-4">
+
+            <input class="form-control" type="Text" name="Education[{Ed1}].College" placeholder="College Name" />
+
+            <input class="form-control" type="Text" name="Education[{Ed1}].Course" placeholder="Course Name" />
+
+        </div>
+        <div class="col-4">
+
+            <input class="form-control" type="date" name="Education[{Ed1}].CompletionYear" placeholder="Completion Year" />
+
+            Yes
+            <input class="form-check" type="checkbox" name="Education[{Ed1}].Project" />
+        </div>
+
+    </div>
+    
+</template>
+
+<template id="tempExp">
+    <div class="row Experience_cnt">
+        <input class="IndexExp_cnt" type="hidden" name="Experience.Index" value="{Ex1}" />
+        <div class="col-3">
+
+            <input class="form-control" type="Text" name="Experience[{Ex1}].Field" placeholder="Wokred Feld" />
+        </div>
+        <div class="col-3">
+            <input class="form-control" type="number" name="Experience[{Ex1}].Year" value="" placeholder="Worked Years" />
+        </div>
+            
+
+        <div class="col-3">
+            <select name="Experience[{Ex1}].SkillLevel">
+                <option value="Advance">Advance</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Beginner">Beginner</option>
+            </select>
+        </div>
+    </div>
+    
+</template>
+
+<script>
+    $(document).ready(function () {
+
+        var j = $('.IndexEdu_cnt').length;
+        $('#AddbtnEdu').click(function () {
+            var newl = $("#tempEdu").html();
+            newl = newl.replace(/{Ed1}/gi, 'j_' + j++);
+            $('#Education_Row').append(newl); //.insert After ("#Education")
+        });
+        $("#AddbtnEdu").trigger('click');
+
+        var k = $('.IndexExp_cnt').length;
+        $('#AddbtnExp').click(function () {
+            var newl2 = $("#tempExp").html();
+            newl2 = newl2.replace(/{Ex1}/gi, 'k_' + k++);
+            $('#Experience_Row').append(newl2); //.insert After ("#Experience")
+        });
+        $("#AddbtnExp").trigger('click');
+    });
+</script>
+
+<hr />
+<div class="container">
+    <div class="row g-2">
+
+        <a class="btn btn-outline-dark col-4" asp-area="" asp-controller="Persons" asp-action="Index">
+            Person List
+        </a>
+        <a class="btn btn-outline-dark col-4" asp-area="" asp-controller="Educations" asp-action="Index">
+            Education List
+        </a>
+        <a class="btn btn-outline-dark col-4" asp-area="" asp-controller="Experiences" asp-action="Index">
+            Experience List
+        </a>
+    </div>
+
+</div>
